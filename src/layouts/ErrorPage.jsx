@@ -12,7 +12,8 @@ const ErrorPage = () => {
             Sorry, we couldn&apos;t find this page.
           </p>
           <p className='mt-4 mb-8 text-gray-400 dark:text-gray-600'>
-            But dont worry, you can find plenty of other things on our homepage.
+            But don't worry, you can find plenty of other things on our
+            homepage.
           </p>
           <Link
             to='/'

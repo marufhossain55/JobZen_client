@@ -1,4 +1,10 @@
+import JobByCategories from '../components/JobByCategories';
+
 const Home = () => {
-  return <div>hi</div>;
+  return (
+    <div>
+      <JobByCategories></JobByCategories>
+    </div>
+  );
 };
 export default Home;

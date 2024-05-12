@@ -45,6 +45,9 @@ const NavBar = () => {
       <li>
         <NavLink to='/myJobs'>My Jobs</NavLink>
       </li>
+      <li>
+        <NavLink to='/blog'>Blogs</NavLink>
+      </li>
     </>
   );
   //<----------------->
@@ -135,9 +138,6 @@ const NavBar = () => {
               >
                 <li>
                   <a>Profile</a>
-                </li>
-                <li>
-                  <a>Blog</a>
                 </li>
                 <li onClick={handleLogOut}>
                   <a>Logout</a>
