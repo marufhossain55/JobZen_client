@@ -5,10 +5,16 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/Routes.jsx';
 import FirebaseProvider from './provider/FirebaseProvider.jsx';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// Create a client
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <FirebaseProvider>
-      <RouterProvider router={router} />
-    </FirebaseProvider>
+    <QueryClientProvider client={queryClient}>
+      <FirebaseProvider>
+        <RouterProvider router={router} />
+      </FirebaseProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

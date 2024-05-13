@@ -55,7 +55,7 @@ const NavBar = () => {
   //<----------------->
 
   return (
-    <div className='navbar pt-6 dark:text-black'>
+    <div className='navbar pt-6 dark:text-black sticky top-0 z-10'>
       {/* bg-base-100 */}
       <div className='navbar-start'>
         <div className='dropdown'>
