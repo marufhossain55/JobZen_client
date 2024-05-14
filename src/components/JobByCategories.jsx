@@ -22,7 +22,6 @@ const JobByCategories = () => {
   if (isError) {
     return <p>{error.message}</p>;
   }
-  console.log(allJobs);
   return (
     <div className='py-10 flex justify-center items-center'>
       <Tabs>

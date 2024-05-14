@@ -30,7 +30,7 @@ const AllJobs = () => {
             <th className='w-1'>Sn</th>
             <th className='w-14'>Job Title</th>
             <th className='w-14'>Job Posting Date</th>
-            <th className='w-14 '>Application Deadline</th>
+            <th className='w-14 '>Application Application_Deadline</th>
             <th className='w-14'>Salary range</th>
             <th className='w-14'>Details</th>
           </tr>

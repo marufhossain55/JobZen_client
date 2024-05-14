@@ -4,11 +4,11 @@ const AllJobsCards = ({ jobs, idx }) => {
   const {
     _id,
     Category,
-    Deadline,
+    Application_Deadline,
     Job_Title,
     min_salary,
     max_salary,
-    Posting_Date,
+    Job_Posting_Date,
   } = jobs;
   return (
     <div className='overflow-x-auto'>
@@ -20,8 +20,8 @@ const AllJobsCards = ({ jobs, idx }) => {
           <tr>
             <th className='w-1'>{idx + 1}</th>
             <td className='w-14'>{Job_Title}</td>
-            <td className='w-14'>{Posting_Date}</td>
-            <td className='w-14'>{Deadline}</td>
+            <td className='w-14'>{Job_Posting_Date}</td>
+            <td className='w-14'>{Application_Deadline}</td>
             <td className='w-14'>
               {min_salary} to {max_salary}
             </td>
