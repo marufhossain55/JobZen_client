@@ -9,7 +9,7 @@ const JobCategoriesCard = ({ jobs }) => {
     min_salary,
     max_salary,
     Category,
-    Job_Job_Applicants_Number,
+    Job_Applicants_Number,
     Name,
   } = jobs;
   return (
@@ -34,7 +34,7 @@ const JobCategoriesCard = ({ jobs }) => {
           <div>
             Salary:{min_salary} to {max_salary}
           </div>
-          <div> Applicants no:{Job_Job_Applicants_Number}</div>
+          <div> Applicants no:{Job_Applicants_Number}</div>
         </div>
 
         <div className='flex items-center justify-center mt-4'>
