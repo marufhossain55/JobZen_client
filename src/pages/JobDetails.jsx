@@ -5,7 +5,6 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../hooks/useAuth';
 const JobDetails = () => {
   const { user } = useAuth();
-  console.log(user);
   // const jobDetails = useLoaderData();
   const { id } = useParams();
   // console.log(id);

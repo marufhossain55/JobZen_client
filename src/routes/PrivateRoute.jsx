@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -16,7 +17,12 @@ const PrivateRoute = ({ children }) => {
     );
   }
   if (!user) {
-    return <Navigate to='/singIn' state={location?.pathname || '/'} />;
+    return (
+      <>
+        {toast.success('You must login first')}
+        <Navigate to='/login' state={location?.pathname || '/'} />;
+      </>
+    );
   }
   return <div>{children}</div>;
 };

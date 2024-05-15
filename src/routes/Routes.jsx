@@ -11,6 +11,7 @@ import AppliedJobs from '../pages/AppliedJobs';
 import MyJobs from '../pages/MyJobs';
 import Blogs from '../pages/Blogs';
 import PrivateRoute from './PrivateRoute';
+import UpdateJob from '../components/UpdateJob';
 
 export const router = createBrowserRouter([
   {
@@ -34,16 +35,24 @@ export const router = createBrowserRouter([
       {
         path: '/job/:id',
         element: <JobDetails />,
-        loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
+        // loader: ({ params }) =>
+        //   fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
       },
       {
         path: '/addAJob',
-        element: <AddAJob />,
+        element: (
+          <PrivateRoute>
+            <AddAJob />
+          </PrivateRoute>
+        ),
       },
       {
         path: '/appliedJobs',
-        element: <AppliedJobs></AppliedJobs>,
+        element: (
+          <PrivateRoute>
+            <AppliedJobs></AppliedJobs>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/myJobs',
@@ -56,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: '/blogs',
         element: <Blogs />,
+      },
+      {
+        path: '/updateJob/:id',
+        element: <UpdateJob />,
       },
     ],
   },

@@ -9,6 +9,7 @@ import {
 import { createContext, useEffect, useState } from 'react';
 import { GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
+import useAxiosInstance from '../hooks/useAxiosInstance';
 
 export const AuthContext = createContext();
 
@@ -19,6 +20,7 @@ const GithubProvider = new GithubAuthProvider();
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosSecure = useAxiosInstance();
 
   //create user
   const createUser = (email, password) => {
@@ -60,16 +62,32 @@ const FirebaseProvider = ({ children }) => {
   };
 
   // observer
+  // useEffect(() => {
+  //   const unSubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setUser(user);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //     setLoading(false);
+  //   });
+  //   return () => unSubscribe();
+  // }, []);
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
+    const clearUser = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
       setLoading(false);
+      const userPayloadData = { email: currentUser?.email || user?.email };
+      if (currentUser) {
+        axiosSecure.post('/jwt', userPayloadData).then((res) => res.data);
+      }
+      if (!user) {
+        axiosSecure.post('/clearCookies').then((res) => res.data);
+      }
     });
-    return () => unSubscribe();
+    return () => {
+      clearUser();
+    };
   }, []);
 
   const authInfo = {
