@@ -2,40 +2,56 @@ import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useAuth from '../hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 const AddAJob = () => {
   const { user } = useAuth();
   const [startDate, setStartDate] = useState(new Date());
   const [startDateDeadline, setStartDateDeadline] = useState(new Date());
 
-  const handleFromSubmit = (e) => {
+  const handleFromSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const userName = user?.displayName;
-    const email = user?.email;
+    const Contact_Email = user?.email;
     const photoURL = form.photoURL.value;
-    const jobCategory = form.jobCategory.value;
-    const jobTitle = form.jobTitle.value;
-    const minSalaryRange = form.minSalaryRange.value;
-    const maxSalaryRange = form.maxSalaryRange.value;
-    const JobDescription = form.JobDescription.value;
-    const jobApplicantsNumber = form.jobApplicantsNumber.value;
-    const jobPostingDate = startDate;
-    const applicationDeadline = startDateDeadline;
+    const Category = form.jobCategory.value;
+    const Job_Title = form.jobTitle.value;
+    const min_salary = form.minSalaryRange.value;
+    const max_salary = form.maxSalaryRange.value;
+    const Description = form.JobDescription.value;
+    const Job_Applicants_Number = form.jobApplicantsNumber.value;
+    const Job_Posting_Date = new Date(startDate).toLocaleDateString();
+    const Application_Deadline = new Date(
+      startDateDeadline
+    ).toLocaleDateString();
     const jobPostData = {
       userName,
-      email,
+      Contact_Email,
       photoURL,
-      jobCategory,
-      jobTitle,
-      minSalaryRange,
-      maxSalaryRange,
-      JobDescription,
-      jobApplicantsNumber,
-      jobPostingDate,
-      applicationDeadline,
+      Category,
+      Job_Title,
+      min_salary,
+      max_salary,
+      Description,
+      Job_Applicants_Number,
+      Job_Posting_Date,
+      Application_Deadline,
     };
-    // console.log(jobPostData);
+    console.log(jobPostData);
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/addAJob`,
+        jobPostData
+      );
+      console.log(data);
+    } catch (err) {
+      console.log('error msg', err);
+    }
   };
+  //<----->>
+
+  //<------>
 
   return (
     <section className='max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800'>
